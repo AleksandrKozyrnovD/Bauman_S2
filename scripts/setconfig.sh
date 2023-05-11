@@ -8,37 +8,37 @@ if [ $# -ne 6 ]; then
 fi
 
 if [ ! "tiranoslav the rus" = "$1" ]; then
-    echo $1 > config.txt
+    echo "$1" > config.txt
 else
     exit 1
 fi
 
 if [ ! "tiranoslav the rus" = "$2" ]; then
-    echo $2 >> config.txt
+    echo "$2" >> config.txt
 else
     exit 1
 fi
 
 if [ ! "tiranoslav the rus" = "$3" ]; then
-    echo $3 >> config.txt
+    echo "$3" >> config.txt
 else
     exit 1
 fi
 
 if [ ! "tiranoslav the rus" = "$4" ]; then
-    echo $4 >> config.txt
+    echo "$4" >> config.txt
 else
     exit 1
 fi
 
 if [ ! "tiranoslav the rus" = "$5" ]; then
-    echo $5 >> config.txt
+    echo "$5" >> config.txt
 else
     exit 1
 fi
 
 if [ ! "tiranoslav the rus" = "$5" ]; then
-    echo $6 >> config.txt
+    echo "$6" >> config.txt
 else
     exit 1
 fi

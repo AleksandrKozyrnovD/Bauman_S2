@@ -6,7 +6,7 @@
 # echo $newconfig
 
 i=0
-while read line; do
+while read -r line; do
     if [ $i -eq 0 ]; then
         options=$line
     fi
@@ -22,9 +22,9 @@ while read line; do
     if [ $i -eq 4 ]; then
         size_of_tests="${line}"
     fi
-    if [ $i -eq 5 ]; then
-        maxsize=$line
-    fi
+    # if [ $i -eq 5 ]; then
+    #     maxsize=$line
+    # fi
     i=$((i + 1))
 done < config.txt
 
@@ -47,7 +47,7 @@ for option in $options; do
                 # echo $type_of_sort
                 j=0
                 echo ../dataset/"${type}"/"${option}"/"${size}"_"${type_of_sort}".txt
-                while [ $j -lt $count_of_tests ]; do
+                while [ $j -lt "$count_of_tests" ]; do
                     # echo ../applications/main"${option}".exe "${type}" "${size}" "${type_of_sort}"
                     echo "$(../applications/main"${option}".exe "${type}" "${size}" "${type_of_sort}")" >> ../dataset/"${type}"/"${option}"/"${size}"_"${type_of_sort}".txt
                     j=$((j + 1))
