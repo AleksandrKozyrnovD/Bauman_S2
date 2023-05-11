@@ -1,5 +1,3 @@
-#!usr/bin/gnuplot -persist
-
 reset
 
 # set boxwidth 1 absolute

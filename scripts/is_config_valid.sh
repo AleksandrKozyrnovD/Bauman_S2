@@ -6,9 +6,9 @@ if [ $# -ne 1 ]; then
 fi
 
 i=0
-while read line; do
-    echo $line
+while read -r line; do
+    echo "$line"
     i=$((i + 1))
-done < $1
+done < "$1"
 
-exit $i
+exit "$i"

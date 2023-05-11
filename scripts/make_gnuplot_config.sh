@@ -6,10 +6,7 @@ PREFIX=$PATHTOCFG"GNUPLOT_"
 PATHTOTMPL="./template/"
 
 #clearing other configs
-for file in $PATHTOCFG*; do
-    # echo $file
-    rm $file
-done
+rm $PATHTOCFG*.gpi
 
 #making unique average
 for file in $PATHTOTXT; do
