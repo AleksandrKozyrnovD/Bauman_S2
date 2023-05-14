@@ -1,5 +1,5 @@
 #!/bin/bash
-
+PATHTOTXTO2="../dataset/processed_data/*O2*"
 PATHTOTXT="../dataset/processed_data/*"
 PATHTOCFG="./gnuplotconfigs/"
 PREFIX=$PATHTOCFG"GNUPLOT_"
@@ -52,6 +52,23 @@ echo "set output \"../pictures/Comparative_Graph.svg\"" >> "$name"
 
 count=0
 for file in $PATHTOTXT; do
+    basename=$(basename "${file}")
+    if [ $count -eq 0 ]; then
+        echo "plot \"$file\" using 1:2 with linespoints title \"$basename\", \\" >> "$name"
+    else
+        echo "\"$file\" using 1:2 with linespoints title \"$basename\", \\" >> "$name"
+    fi
+    count=$((count + 1))
+done
+
+#making comparative graph O2
+name=$PREFIX"Comparative_Graph_O2.gpi"
+cat $PATHTOTMPL"base.txt" > "$name"
+echo "set terminal svg size 1080, 720" >> "$name"
+echo "set output \"../pictures/Comparative_Graph_O2.svg\"" >> "$name"
+
+count=0
+for file in $PATHTOTXTO2; do
     basename=$(basename "${file}")
     if [ $count -eq 0 ]; then
         echo "plot \"$file\" using 1:2 with linespoints title \"$basename\", \\" >> "$name"
