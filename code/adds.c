@@ -10,7 +10,7 @@ unsigned long long microseconds_now(void)
     if (gettimeofday(&value, NULL))
         return (unsigned long long) -1;
     
-    return value.tv_sec * 1000ULL + value.tv_usec / 1000ULL;
+    return value.tv_sec * 1000ULL * 1000ULL + value.tv_usec;
 }
 
 

@@ -1,6 +1,9 @@
 #!/bin/bash
-PATHTOTXTO2="../dataset/processed_data/*O2*"
+
 PATHTOTXT="../dataset/processed_data/*"
+PATHTOTXTO2="../dataset/processed_data/*O2*"
+PATHTOTXTO3="../dataset/processed_data/*_2*"
+PATHTOTXTO4="../dataset/processed_data/*_1*"
 PATHTOCFG="./gnuplotconfigs/"
 PREFIX=$PATHTOCFG"GNUPLOT_"
 PATHTOTMPL="./template/"
@@ -74,6 +77,60 @@ for file in $PATHTOTXTO2; do
         echo "plot \"$file\" using 1:2 with linespoints title \"$basename\", \\" >> "$name"
     else
         echo "\"$file\" using 1:2 with linespoints title \"$basename\", \\" >> "$name"
+    fi
+    count=$((count + 1))
+done
+
+#making comparative graph best case
+name=$PREFIX"Comparative_Graph_bestcase.gpi"
+cat $PATHTOTMPL"base.txt" > "$name"
+echo "set terminal svg size 1080, 720" >> "$name"
+echo "set output \"../pictures/Comparative_Graph_bestcase.svg\"" >> "$name"
+
+count=0
+for file in $PATHTOTXTO3; do
+    basename=$(basename "${file}")
+    if [ $count -eq 0 ]; then
+        echo "plot \"$file\" using 1:2 with linespoints title \"$basename\", \\" >> "$name"
+    else
+        echo "\"$file\" using 1:2 with linespoints title \"$basename\", \\" >> "$name"
+    fi
+    count=$((count + 1))
+done
+
+#making comparative graph general case
+name=$PREFIX"Comparative_Graph_generalcase.gpi"
+cat $PATHTOTMPL"base.txt" > "$name"
+echo "set terminal svg size 1080, 720" >> "$name"
+echo "set output \"../pictures/Comparative_Graph_generalcase.svg\"" >> "$name"
+
+count=0
+for file in $PATHTOTXTO4; do
+    basename=$(basename "${file}")
+    if [ $count -eq 0 ]; then
+        echo "plot \"$file\" using 1:2 with linespoints title \"$basename\", \\" >> "$name"
+    else
+        echo "\"$file\" using 1:2 with linespoints title \"$basename\", \\" >> "$name"
+    fi
+    count=$((count + 1))
+done
+
+
+#making comparative graph with error
+name=$PREFIX"Comparative_Graph_error.gpi"
+cat $PATHTOTMPL"base.txt" > "$name"
+echo "set terminal svg size 1080, 720" >> "$name"
+echo "set output \"../pictures/Comparative_Graph_error.svg\"" >> "$name"
+
+count=0
+for file in $PATHTOTXTO2; do
+    basename=$(basename "${file}")
+    if [ $count -eq 0 ]; then
+        # echo "plot \"$file\" using 1:2 with linespoints title \"$basename\", \\" >> "$name"
+        echo "plot \"$file\" using 1:5:3:7 with yerror title \"$basename Error\", \"$file\" using 1:2 with lines title \"$basename\", \\" >> "$name"
+    else
+        # echo "\"$file\" using 1:2 with linespoints title \"$basename\", \\" >> "$name"
+        echo "\"$file\" using 1:5:3:7 with yerror title \"$basename Error\", \"$file\" using 1:2 with lines title \"$basename\", \\" >> "$name"
     fi
     count=$((count + 1))
 done

@@ -49,6 +49,7 @@ for option in $options; do
                 echo ../dataset/"${type}"/"${option}"/"${size}"_"${type_of_sort}".txt
                 while [ $j -lt "$count_of_tests" ]; do
                     # echo ../applications/main"${option}".exe "${type}" "${size}" "${type_of_sort}"
+                    # Разве это ошибка для shellcheck?
                     echo "$(../applications/main"${option}".exe "${type}" "${size}" "${type_of_sort}")" >> ../dataset/"${type}"/"${option}"/"${size}"_"${type_of_sort}".txt
                     j=$((j + 1))
                 done

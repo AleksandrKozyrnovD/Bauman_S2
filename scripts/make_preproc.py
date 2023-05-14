@@ -5,7 +5,10 @@ def process_data(array: list):
     lenght = len(array)
     array.sort()
     average = sum(array) / len(array)
-    median = array[lenght // 2 + lenght % 2]
+    if lenght == 1:
+        median = array[0]
+    else:
+        median = array[lenght // 2 + lenght % 2]
     quartil1 = array[lenght // 4]
     quartil3 = array[(lenght // 4) * 3]
 

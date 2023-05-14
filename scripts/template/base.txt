@@ -5,7 +5,7 @@ reset
 NO_ANIMATION = 1
 
 set xlabel "Sizes"
-set ylabel "Average"
+set ylabel "Average, microsec"
 
 
 # set bars 4.0

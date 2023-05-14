@@ -46,14 +46,15 @@ void insertion_sort2(int *array, size_t n)
 
 void insertion_sort3(int *pbeg, int *pend)
 {
-    int *ptemp = pbeg;
-    for (int i = 0; i < pend - pbeg; i++)
+    for (int i = 1; i < pend - pbeg; i++)
     {
-        for (int j = i; j >= 0 && *(pbeg + j - 1) > *(pbeg + j); j--)
+        int j = i;
+        while (j > 0 && *(pbeg + j - 1) > *(pbeg + j))
         {
-            *ptemp = *(pbeg + j - 1);
-            *(pbeg + j - 1) = *(pbeg + j);
-            *(pbeg + j) = *ptemp;
+            int temp = *(pbeg + j);
+            *(pbeg + j) = *(pbeg + j - 1);
+            *(pbeg + j - 1) = temp;
+            j--;
         }
     }
 }
