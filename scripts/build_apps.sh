@@ -12,16 +12,13 @@ while read -r line; do
     # if [ $i -eq 1 ]; then
         # types=$line
     # fi
-    # if [ $i -eq 2 ]; then
-        # types_of_sort=$line
-    # fi
     # if [ $i -eq 3 ]; then
     #     count_of_tests=$line
     # fi
     # if [ $i -eq 4 ]; then
     #     size_of_tests="${line}"
     # fi
-    if [ $i -eq 5 ]; then
+    if [ $i -eq 4 ]; then
         nmax=$line
     fi
     i=$((i + 1))

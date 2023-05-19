@@ -19,21 +19,21 @@ DATASETS = "../dataset/"
 for directory in os.listdir(DATASETS):
     if directory != "processed_data":
         for subdirectory in os.listdir(f"{DATASETS}{directory}"):
-            for sort_types in ["1", "2"]:
-                proc_data = []
-                for file in os.listdir(f"{DATASETS}{directory}/{subdirectory}"):
-                    if "_" + sort_types in file: 
+            proc_data = []
+            for file in os.listdir(f"{DATASETS}{directory}/{subdirectory}"):
+                    if ".txt" in file:
                         with open(f"{DATASETS}{directory}/{subdirectory}/{file}", 'r') as data:
                             array_of_data = [int(rows.rstrip()) for rows in data]
-                        proc_data.append([int(file[:-6]), process_data(array_of_data)])
+                        # print(file)
+                        proc_data.append([int(file[:-4]), process_data(array_of_data)])
                         # print(proc_data)
 
-                proc_data = sorted(proc_data, key=lambda x: x[0])
-                # print(proc_data)
-                with open(f"{DATASETS}processed_data/{directory}_{subdirectory}_{sort_types}.txt", 'w') as outputfile:
-                    for proc in proc_data:
-                        #Write column of size of the input data
-                        outputfile.write("".join(str(proc[0])) + " ")
-                        #Write columns with these:
-                        #average, minimum, lowerquartile, median, upperquartile, maximum
-                        outputfile.write(" ".join(map(str, proc[1])) + "\n")
+            proc_data = sorted(proc_data, key=lambda x: x[0])
+            # print(proc_data)
+            with open(f"{DATASETS}processed_data/{directory}_{subdirectory}.txt", 'w') as outputfile:
+                for proc in proc_data:
+                    #Write column of size of the input data
+                    outputfile.write("".join(str(proc[0])) + " ")
+                    #Write columns with these:
+                    #average, minimum, lowerquartile, median, upperquartile, maximum
+                    outputfile.write(" ".join(map(str, proc[1])) + "\n")

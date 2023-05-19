@@ -1,63 +1,45 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include "sort.h"
 #include "adds.h"
+#include "types.h"
+#include "dotproduct.h"
 
-#ifndef NMAX
-#error NMAX IS NOT DEFINED
-#endif
-
-typedef int array_t[NMAX];
-
+//usage ./app.exe size type
 int main(int argc, char **argv)
 {
-    array_t array;
+    matrix_t a, b, c;
 
     // printf("%d\n", argc);
-    if (argc != 4)
+    if (argc != 3)
         return 1;
 
-    int type = atoi(argv[1]);
-    int size = atoi(argv[2]);
-    int type_of_sort = atoi(argv[3]);
+    int size = atoi(argv[1]);
+    int type = atoi(argv[2]);
 
-    switch (type_of_sort)
-    {
-        case 1:
-            init(array, size);
-            break;
-        case 2:
-            init_sorted(array, size);
-            break;
+    init_matrix(a, size, size);
+    init_matrix(b, size, size);
+
+
+unsigned long long beg = 0;
+unsigned long long end = 0;
+
+switch(type)
+{
+     case 1:
+        beg = microseconds_now();
+        dotproduct_no_tr(a, b, c, size);
+        end = microseconds_now();
+        break;
+    case 2:
+        beg = microseconds_now();
+        dotproduct_tr(a, b, c, size);
+        end = microseconds_now();
+        break;
     }
 
-    unsigned long long beg;
-    unsigned long long end;
-    switch (type)
-    {
-        case 1:
-            beg = microseconds_now();
-            insertion_sort1(array, size);
-            end = microseconds_now();
-            break;
-        case 2:
-            beg = microseconds_now();
-            insertion_sort2(array, size);
-            end = microseconds_now();
-            break;
-        case 3:
-            beg = microseconds_now();
-            insertion_sort3(array, array + size);
-            end = microseconds_now();
-            break;
-        default:
-            return 1;
-    }
-
+    a[0][0] = 0;
+    b[0][0] = 123;
     printf("%llu\n", (end - beg));
-    // FILE *checks = fopen("../code/results/test.txt", "w");
-    // print_array_into_file(checks, array, size);
-    // fclose(checks);
+
 
     return 0;
 }

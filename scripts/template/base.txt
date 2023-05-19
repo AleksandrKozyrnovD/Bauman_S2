@@ -8,7 +8,7 @@ set xlabel "Sizes"
 set ylabel "Average, microsec"
 
 
-# set bars 4.0
+set bars 0.5
 set grid
 
 #data columns: x min 1quartile median 3quartile max

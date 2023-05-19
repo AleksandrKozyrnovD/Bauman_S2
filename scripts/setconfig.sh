@@ -2,8 +2,8 @@
 
 cmd="./is_config_valid.sh config.txt"
 
-if [ $# -ne 6 ]; then
-    echo "Usage: ./update_data.sh 'options' 'types' 'types of sort' 'count_of_tests' 'sizes_of_tests' 'max_size'"
+if [ $# -ne 5 ]; then
+    echo "Usage: ./update_data.sh 'options' 'type' 'count_of_tests' 'sizes' 'maxsize'"
     exit 1
 fi
 
@@ -33,12 +33,6 @@ fi
 
 if [ ! "tiranoslav the rus" = "$5" ]; then
     echo "$5" >> config.txt
-else
-    exit 1
-fi
-
-if [ ! "tiranoslav the rus" = "$5" ]; then
-    echo "$6" >> config.txt
 else
     exit 1
 fi

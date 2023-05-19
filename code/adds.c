@@ -3,6 +3,7 @@
 #include "adds.h"
 
 
+
 unsigned long long microseconds_now(void)
 {
     struct timeval value;
@@ -21,10 +22,14 @@ void init(int *array, int size)
         array[i] = (rand() % (size * 3));
 }
 
-void init_sorted(int *array, int size)
+void init_matrix(matrix_t matrix, size_t rows, size_t columns)
 {
-    for (int i = 0; i < size; i++)
-        array[i] = i;
+    srand(time(NULL));
+    for (size_t i = 0; i < rows; i++)
+        for (size_t j = 0; j < columns; j++)
+        {
+            matrix[i][j] = (rand() % (rows * columns * 3));
+        }
 }
 
 void print_array(const int *array, int size)
@@ -34,11 +39,14 @@ void print_array(const int *array, int size)
     printf("\n");
 }
 
-void print_array_into_file(FILE *file, int *array, int size)
+void print_matrix(FILE *file, matrix_t matrix, size_t rows, size_t columns)
 {
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < rows; i++)
     {
-        fprintf(file, "%d ", array[i]);
+        for (size_t j = 0; j < columns; j++)
+        {
+            fprintf(file, "%d ", matrix[i][j]);
+        }
+        printf("\n");
     }
-    fprintf(file, "\n");
 }

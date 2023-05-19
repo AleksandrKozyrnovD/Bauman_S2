@@ -14,12 +14,9 @@ while read -r line; do
         types=$line
     fi
     if [ $i -eq 2 ]; then
-        types_of_sort=$line
-    fi
-    if [ $i -eq 3 ]; then
         count_of_tests=$line
     fi
-    if [ $i -eq 4 ]; then
+    if [ $i -eq 3 ]; then
         size_of_tests="${line}"
     fi
     # if [ $i -eq 5 ]; then
