@@ -24,6 +24,7 @@ while read -r line; do
     i=$((i + 1))
 done < config.txt
 
+
 for option in $options; do
     cmd="gcc $flags $path_to_main "-$option" -o $path_to_bin""main${option}.exe"" -DNMAX=${nmax}"
     # echo $cmd

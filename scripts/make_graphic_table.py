@@ -2,8 +2,8 @@ from math import sqrt
 import os
 
 
-def get_average_by_size(type, size, optimisation, case):
-    with open(f"../dataset/processed_data/{type}_{optimisation}_{case}.txt", 'r') as f:
+def get_average_by_size(type, size, optimisation):
+    with open(f"../dataset/processed_data/{type}_{optimisation}.txt", 'r') as f:
         while True:
             line = f.readline()
             if line:
@@ -13,11 +13,11 @@ def get_average_by_size(type, size, optimisation, case):
             else:
                 break
 
-def calculate_error_avg(type, size, optimisation, case):
-    average = get_average_by_size(type, size, optimisation, case)
+def calculate_error_avg(type, size, optimisation):
+    average = get_average_by_size(type, size, optimisation)
     s_sq = 0.0
     count = 0
-    with open(f"../dataset/{type}/{optimisation}/{size}_{case}.txt", 'r') as f:
+    with open(f"../dataset/{type}/{optimisation}/{size}.txt", 'r') as f:
         while True:
             line = f.readline()
             if line:
@@ -48,14 +48,16 @@ def get_config(file):
 
 
 config = get_config("./config.txt")
+
+# print(config)
 optimisations = config[0]
 types = config[1]
-cases = config[2]
-sizes = config[4]
-
-for case in cases:
-    for type in types:
-        for optimisation in optimisations:
-            with open(f"../dataset/processed_data/{type}_{optimisation}_{case}_tablica.txt", 'w') as f:
-                for size in sizes:
-                        f.write(f"{size} {get_average_by_size(type, size, optimisation, case)} {calculate_error_avg(type, size, optimisation, case)}\n")
+sizes = config[3]
+# print(sizes)
+for type in types:
+    for optimisation in optimisations:
+        print(type, optimisation)
+        with open(f"../dataset/processed_data/{type}_{optimisation}_tablica.txt", 'w') as f:
+            for size in sizes:
+                print(size)
+                f.write(f"{size} {get_average_by_size(type, size, optimisation)} {calculate_error_avg(type, size, optimisation)}\n")

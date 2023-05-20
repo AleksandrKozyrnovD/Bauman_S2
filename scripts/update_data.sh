@@ -38,18 +38,13 @@ for option in $options; do
     for type in $types; do
         # echo $type
         for size in $size_of_tests; do
-            # echo $size
-            # echo $types_of_sort
-            for type_of_sort in $types_of_sort; do
-                # echo $type_of_sort
-                j=0
-                echo ../dataset/"${type}"/"${option}"/"${size}"_"${type_of_sort}".txt
-                while [ $j -lt "$count_of_tests" ]; do
-                    # echo ../applications/main"${option}".exe "${type}" "${size}" "${type_of_sort}"
-                    # Разве это ошибка для shellcheck?
-                    echo "$(../applications/main"${option}".exe "${type}" "${size}" "${type_of_sort}")" >> ../dataset/"${type}"/"${option}"/"${size}"_"${type_of_sort}".txt
-                    j=$((j + 1))
-                done
+            j=0
+            echo ../dataset/"${type}"/"${option}"/"${size}".txt
+            while [ $j -lt "$count_of_tests" ]; do
+                # echo ../applications/main"${option}".exe "${type}" "${size}" "${type_of_sort}"
+                # Разве это ошибка для shellcheck?
+                echo "$(../applications/main"${option}".exe "${size}" "${type}")" >> ../dataset/"${type}"/"${option}"/"${size}".txt
+                j=$((j + 1))
             done
         done
     done
